@@ -1,33 +1,38 @@
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+  --bg: #0B1220;
+  --surface: rgba(255, 255, 255, 0.06);
+  --surface2: rgba(255, 255, 255, 0.09);
+  --text: rgba(255, 255, 255, 0.92);
+  --muted: rgba(255, 255, 255, 0.68);
+  --border: rgba(255, 255, 255, 0.12);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+  --accent: #7C5CFF;
+  --accent2: #33D6A6;
 
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
+  --shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  --radius: 18px;
+  --container: 1100px;
 }
 
 * {
   box-sizing: border-box;
+}
+
+html,
+body {
   padding: 0;
   margin: 0;
+}
+
+body {
+  background: radial-gradient(1200px 700px at 20% 10%, rgba(124, 92, 255, 0.18), transparent 55%),
+    radial-gradient(900px 500px at 80% 20%, rgba(51, 214, 166, 0.12), transparent 55%),
+    var(--bg);
+  color: var(--text);
+  font-family: ui-sans-serif, system-ui -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji",
+    "Segoe UI Emoji";
+  line-height: 1.4;
 }
 
 a {
@@ -35,8 +40,297 @@ a {
   text-decoration: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+.appShell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.mainContent {
+  flex: 1;
+}
+
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 18px;
+}
+
+/* Header */
+.siteHeader {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  backdrop-filter: blur(14px);
+  background: rgba(11, 18, 32, 0.55);
+  border-bottom: 1px solid var(--border);
+}
+
+.headerInner {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+
+.brandMark {
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: linear-gradient(135deg, rgba(124, 92, 255, 0.9), rgba(51, 214, 166, 0.9));
+  box-shadow: var(--shadow);
+}
+
+.nav {
+  display: flex;
+  gap: 14px;
+}
+
+.navLink {
+  padding: 8px 10px;
+  border-radius: 12px;
+  color: var(--muted);
+  transition: background 160ms ease, color 160ms ease;
+}
+
+.navLink:hover {
+  background: var(--surface);
+  color: var(--text);
+}
+
+/* Hero */
+.hero {
+  padding: 56px 0 28px;
+}
+
+.heroInner {
+  display: grid;
+  gap: 16px;
+}
+
+.heroTitle {
+  font-size: clamp(2.1rem, 5vw, 3.2rem);
+  line-height: 1.08;
+  margin: 0;
+}
+
+.heroSubtitle {
+  margin: 0;
+  color: var(--muted);
+  max-width: 62ch;
+}
+
+.heroCtas {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding-top: 6px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  padding: 0 16px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  transition: transform 140ms ease, background 140ms ease, border-color 140ms ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  background: var(--surface2);
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+.btn.primary {
+  border-color: rgba(124, 92, 255, 0.45);
+  background: linear-gradient(135deg, rgba(124, 92, 255, 0.28), rgba(51, 214, 166, 0.16));
+}
+
+.btn.ghost {
+  background: transparent;
+}
+
+.heroStats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  padding-top: 10px;
+}
+
+.statCard {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 14px 14px;
+  box-shadow: var(--shadow);
+}
+
+.statLabel {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.statValue {
+  margin: 6px 0 0;
+  font-weight: 700;
+}
+
+/* Sections */
+.section {
+  padding: 28px 0 50px;
+}
+
+.section.alt {
+  background: rgba(255, 255, 255, 0.02);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.sectionHeader {
+  display: grid;
+  gap: 6px;
+  padding: 12px 0 18px;
+}
+
+.sectionTitle {
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+.sectionSubtitle {
+  margin: 0;
+  color: var(--muted);
+  max-width: 70ch;
+}
+
+/* Panels + Grids */
+.gridTwo {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.gridThree {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.panel {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 16px;
+  box-shadow: var(--shadow);
+}
+
+.panelHeader {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.panelTitle {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.panelNote {
+  margin: 14px 0 0;
+}
+
+/* Lists */
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0 0;
+  display: grid;
+  gap: 10px;
+}
+
+.listRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 14px;
+}
+
+.listLabel {
+  font-weight: 600;
+}
+
+.pill {
+  font-weight: 700;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(51, 214, 166, 0.35);
+  background: rgba(51, 214, 166, 0.12);
+}
+
+/* Chips */
+.chipWrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-top: 10px;
+}
+
+.chip {
+  padding: 8px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(124, 92, 255, 0.35);
+  background: rgba(124, 92, 255, 0.12);
+  font-weight: 600;
+}
+
+/* Footer */
+.siteFooter {
+  border-top: flex;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.small {
+  color: var(--muted);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .heroStats {
+    grid-template-columns: 1fr;
+  }
+
+  .gridTwo,
+  .gridThree {
+    grid-template-columns: 1fr;
+  }
+
+  .nav {
+    display: none;
   }
 }
